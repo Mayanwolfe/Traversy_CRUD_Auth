@@ -96,7 +96,7 @@ app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/stories', require('./routes/stories'))
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8000
 
 app.listen(
     PORT, 
