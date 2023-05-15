@@ -34,9 +34,16 @@ module.exports = function(passport) {
     passport.serializeUser((user,done) => {
         done(null,user.id)
     });
-    passport.deserializeUser((id,done) => {
-        User.findById(id,(err, user) => {
-            done(err, user)
-        })
+    passport.deserializeUser( async function (id,done) {
+        try {
+            const user = await User.findById(id);
+            done(null, user);
+        } catch (err) {
+            console.error(err);
+        }
+        // !Changed. This method no longer works and needs to be an async function.
+        // User.findById(id,(err, user) => {
+        //     done(err, user)
+        // })
     })
 }
